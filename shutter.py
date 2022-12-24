@@ -8,5 +8,5 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 while(True):
-    if GPIO.input(button) == False:
-        os.system('libcamera-still --datetime -n')
+    GPIO.wait_for_edge(button, GPIO.FALLING)
+    os.system('libcamera-still --datetime -n')
