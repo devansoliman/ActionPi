@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import os
+import subprocess
 
 button = 5
 
@@ -9,4 +9,4 @@ GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 while(True):
     GPIO.wait_for_edge(button, GPIO.FALLING)
-    os.system('libcamera-still --datetime -n')
+    subprocess.Popen('libcamera-still --datetime -n', shell=True)
