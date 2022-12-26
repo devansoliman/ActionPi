@@ -7,6 +7,9 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+subprocess.Popen('libcamera-still -t 0 --datetime -s &', shell=True)
+
 while(True):
+    # Take a photo
     GPIO.wait_for_edge(button, GPIO.FALLING)
-    subprocess.Popen('libcamera-still --datetime -n', shell=True)
+    subprocess.Popen('pkill -SIGUSR1 libcamera-still', shell=True)
