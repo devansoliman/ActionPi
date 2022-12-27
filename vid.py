@@ -13,7 +13,7 @@ while(True):
     GPIO.wait_for_edge(button, GPIO.FALLING)
     # Record 30 minute segments encoded in H.264
     now = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    subprocess.Popen(f"libcamera-vid -o {now}.h264 --width 1920 --height 1080 -s --segment 1800000 -t 0 &", shell=True)
+    subprocess.Popen(f"libcamera-vid -o {now}.h264 --width 1920 --height 1080 -s --segment 1800000 -t 0 --flush &", shell=True)
     time.sleep(0.2)
     
     GPIO.wait_for_edge(button, GPIO.FALLING)
