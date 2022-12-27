@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import subprocess
+import time
 
 button = 5
 
@@ -13,3 +14,4 @@ while(True):
     # Take a photo
     GPIO.wait_for_edge(button, GPIO.FALLING)
     subprocess.Popen('pkill -SIGUSR1 libcamera-still', shell=True)
+    time.sleep(0.2)
