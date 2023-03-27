@@ -28,7 +28,6 @@ def video():
     global recording
     if recording == False:
         timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    
         try:
             picam2.start_recording(encoder, f"{timestamp}.h264")
             recording = True
