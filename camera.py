@@ -37,6 +37,7 @@ def video():
 
     else:
         picam2.stop_recording()
+        recording = False
 
 def photo():
     global recording
