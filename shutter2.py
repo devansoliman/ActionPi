@@ -15,7 +15,7 @@ capture_config = picam2.create_still_configuration()
 picam2.start(show_preview=True)
 
 while(True):
-    # Take a photo
     GPIO.wait_for_edge(button, GPIO.FALLING)
+    # capture to file
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     picam2.switch_mode_and_capture_file(capture_config, f"{timestamp}.jpg")
