@@ -1,6 +1,10 @@
 # ActionPi
 Raspberry Pi-based action cameras.
 
+## 3D Printing
+I recommend using a filament with impact, UV, and fatigue resistance.  High wall counts are favorable for strength, which means that the infill can be as low as 15% since the model is already so thin.
+Prototype printed in PETG with wall line count of 4.
+
 ## Pinout
 Coming soon.
 
