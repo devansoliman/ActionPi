@@ -19,7 +19,7 @@ GPIO.setup(white, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # configure picamera2
 picam2 = Picamera2()
 video_config = picam2.create_video_configuration()
-capture_config = picam2.create_still_configuration()
+still_config = picam2.create_still_configuration()
 picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
 picam2.start()
@@ -45,7 +45,7 @@ def photo():
     
     if recording == False:
         # switch from preview to capture mode and save to file
-        picam2.switch_mode_and_capture_file(capture_config, f"{timestamp}.jpg")
+        picam2.switch_mode_and_capture_file(still_config, f"{timestamp}.jpg")
     else:
         # capture image while video is recording
         request = picam2.capture_request()
