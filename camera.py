@@ -22,7 +22,7 @@ video_config = picam2.create_video_configuration()
 capture_config = picam2.create_still_configuration()
 picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
-picam2.start(show_preview=True)
+picam2.start()
 
 def video():
     global recording
