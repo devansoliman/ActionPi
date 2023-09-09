@@ -44,7 +44,7 @@ def photo():
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     
     if recording == False:
-        # switch from preview to capture mode and save to file
+        # switch from video to still config, save to file, and switch back
         picam2.switch_mode_and_capture_file(still_config, f"{timestamp}.jpg")
     else:
         # capture image while video is recording
