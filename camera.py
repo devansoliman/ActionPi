@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 from picamera2.encoders import H264Encoder
 from picamera2 import Picamera2
 from datetime import datetime
+import time
 
 # video recording state
 recording = False
@@ -27,6 +28,14 @@ still_config = picam2.create_still_configuration()
 picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
 picam2.start()
+
+# startup blink
+for i in range(3):
+    GPIO.output(led, GPIO.HIGH)
+    time.sleep(0.050)
+    GPIO.output(led, GPIO.LOW)
+    if i < 2:
+        time.sleep(0.050)
 
 def video():
     global recording
