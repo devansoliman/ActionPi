@@ -3,6 +3,7 @@ from picamera2.encoders import H264Encoder
 from picamera2 import Picamera2
 from datetime import datetime
 import time
+from signal import pause
 
 # video recording state
 recording = False
@@ -37,28 +38,23 @@ for i in range(3):
     if i < 2:
         time.sleep(0.1)
 
-def video():
+def video(red):
     global recording
+
     if recording == False:
         timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-        
-        try:
-            picam2.start_recording(encoder, f"{timestamp}.h264")
-            recording = True
-            GPIO.output(led, GPIO.HIGH)
-        except:
-            recording = False
-            GPIO.output(led, GPIO.LOW)
-
+        picam2.start_encoder(encoder, f"{timestamp}.h264")
+        recording = True
+        GPIO.output(led, GPIO.HIGH)
     else:
-        picam2.stop_recording()
+        picam2.stop_encoder()
         recording = False
         GPIO.output(led, GPIO.LOW)
 
-def photo():
+def photo(white):
     global recording
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    
+
     if recording == False:
         GPIO.output(led, GPIO.HIGH)
         # switch from video to still config, save to file, and switch back
@@ -71,5 +67,7 @@ def photo():
         request.release()
 
 # event detection for colored buttons
-GPIO.add_event_detect(red, GPIO.RISING, video, 150)
-GPIO.add_event_detect(white, GPIO.RISING, photo, 50)
+GPIO.add_event_detect(red, GPIO.FALLING, video, bouncetime = 150)
+GPIO.add_event_detect(white, GPIO.FALLING, photo, bouncetime = 50)
+
+pause()
