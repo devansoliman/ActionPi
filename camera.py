@@ -32,10 +32,10 @@ picam2.start()
 # startup blink
 for i in range(3):
     GPIO.output(led, GPIO.HIGH)
-    time.sleep(0.050)
+    time.sleep(0.1)
     GPIO.output(led, GPIO.LOW)
     if i < 2:
-        time.sleep(0.050)
+        time.sleep(0.1)
 
 def video():
     global recording
