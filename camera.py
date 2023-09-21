@@ -68,7 +68,7 @@ def photo(white):
         request.release()
 
 # event detection for colored buttons
-GPIO.add_event_detect(red, GPIO.FALLING, video, bouncetime=150)
-GPIO.add_event_detect(white, GPIO.FALLING, photo, bouncetime=50)
+GPIO.add_event_detect(red, GPIO.FALLING, video, bouncetime=100)
+GPIO.add_event_detect(white, GPIO.FALLING, photo, bouncetime=100)
 
 pause()
