@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
-from picamera2.encoders import H264Encoder
 from picamera2 import Picamera2
+from picamera2.encoders import H264Encoder
+from libcamera import Transform
 from datetime import datetime
 import time
 from signal import pause
@@ -24,8 +25,8 @@ GPIO.setup(led, GPIO.OUT)
 
 # configure picamera2
 picam2 = Picamera2()
-video_config = picam2.create_video_configuration()
-still_config = picam2.create_still_configuration()
+video_config = picam2.create_video_configuration(transform=Transform(hflip=1, vflip=1))
+still_config = picam2.create_still_configuration(transform=Transform(hflip=1, vflip=1))
 picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
 picam2.start()
@@ -67,7 +68,7 @@ def photo(white):
         request.release()
 
 # event detection for colored buttons
-GPIO.add_event_detect(red, GPIO.FALLING, video, bouncetime = 150)
-GPIO.add_event_detect(white, GPIO.FALLING, photo, bouncetime = 50)
+GPIO.add_event_detect(red, GPIO.FALLING, video, bouncetime=150)
+GPIO.add_event_detect(white, GPIO.FALLING, photo, bouncetime=50)
 
 pause()
