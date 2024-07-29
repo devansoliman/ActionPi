@@ -1,3 +1,5 @@
 
 *.iam
 *.ipt
+/.vscode
+*.xcf
