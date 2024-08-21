@@ -61,7 +61,7 @@ def arm():
 
     with canvas(device) as draw:
         draw.text((0, 10), "READY", font=bold20, fill="white")
-        draw.text((0, 50), f"{free_gb:.2f} / {total_gb:.2f} GB", font=bold10, fill="white")
+        draw.text((0, 50), f"{free_gb:.2f} / {total_gb:.2f} GB", font=reg10, fill="white")
 
 
 def display_time():
