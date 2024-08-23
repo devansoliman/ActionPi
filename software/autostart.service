@@ -4,8 +4,6 @@ Description=ActionPi
 [Service]
 ExecStart=/bin/bash -c "cd /home/action && python action.py"
 Type=simple
-Restart=always
-
 
 [Install]
 WantedBy=default.target
