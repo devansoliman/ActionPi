@@ -44,7 +44,6 @@ picam2 = Picamera2()
 video_config = picam2.create_video_configuration(transform=Transform(hflip=1, vflip=1))
 picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
-picam2.start()
 
 reg10 = ImageFont.truetype("Inter-Regular.ttf", 10)
 bold20 = ImageFont.truetype("Inter-Bold.ttf", 20)
@@ -78,12 +77,12 @@ def video(button):
 
     if recording == False:
         timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-        picam2.start_encoder(encoder, f"{timestamp}.h264")
+        picam2.start_recording(encoder, f"{timestamp}.h264")
         recording = True
         display_time()
         print("RECORDING")
     else:
-        picam2.stop_encoder()
+        picam2.stop_recording()
         recording = False
         print("STOPPED")
         arm()
