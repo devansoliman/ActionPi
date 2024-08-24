@@ -8,8 +8,8 @@ Raspberry Pi-based action cameras.
 - [luma.oled](https://luma-oled.readthedocs.io/en/latest/software.html)
 
 ### Automatic Startup
-1. Put `action.py` into an easily accessible directory.
-2. Add `autostart.service` into `/etc/systemd/system/`. You may have to edit the path to `action.py`.
+1. Put the contents of `software` into an easily accessible directory.
+2. Move `autostart.service` into `/etc/systemd/system/`. You may have to edit the path to `action.py`.
 3. Run `sudo systemctl enable autostart.service`.
 
 ## 3D Printing
