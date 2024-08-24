@@ -3,12 +3,11 @@ from picamera2 import Picamera2
 from picamera2.encoders import H264Encoder
 from libcamera import Transform
 from datetime import datetime
-import time, threading
+import threading
 import os
 from signal import pause
 
-from luma.core.interface.serial import i2c, spi, pcf8574
-from luma.core.interface.parallel import bitbang_6800
+from luma.core.interface.serial import i2c
 from luma.core.render import canvas
 from luma.oled.device import ssd1306
 
@@ -34,7 +33,7 @@ serial = i2c(port=1, address=0x3C)
 device = ssd1306(serial)
 
 # splash image
-splash =  Image.open("splash.jpg")
+splash = Image.open("splash.jpg")
 size = device.width, device.height
 splash = splash.resize(size, Image.LANCZOS)
 device.display(splash.convert(device.mode))
@@ -47,9 +46,9 @@ picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
 
 # load custom fonts
-reg10 = ImageFont.truetype("Inter-Regular.ttf", 10)
-bold20 = ImageFont.truetype("Inter-Bold.ttf", 20)
-bold40 = ImageFont.truetype("Inter-Bold.ttf", 40)
+small = ImageFont.truetype("Inter-Regular.ttf", 10)
+medium = ImageFont.truetype("Inter-Bold.ttf", 20)
+large = ImageFont.truetype("Inter-Bold.ttf", 40)
 
 
 def arm():
@@ -61,8 +60,8 @@ def arm():
     print(f"{free_gb:.2f} / {total_gb:.2f} GB FREE")
 
     with canvas(device) as draw:
-        draw.text((0, 10), "READY", font=bold20, fill="white")
-        draw.text((0, 50), f"{free_gb:.2f} / {total_gb:.2f} GB", font=reg10, fill="white")
+        draw.text((0, 10), "READY", font=medium, fill="white")
+        draw.text((0, 50), f"{free_gb:.2f} / {total_gb:.2f} GB", font=small, fill="white")
 
 
 def show_time():
@@ -70,7 +69,7 @@ def show_time():
         threading.Timer(1, show_time).start()
         global timer
         with canvas(device) as draw:
-            draw.text((0, 10), f"{timer//60:02}:{timer%60:02}", font=bold40, fill="white")
+            draw.text((0, 10), f"{timer//60:02}:{timer%60:02}", font=large, fill="white")
         timer += 1
 
 
