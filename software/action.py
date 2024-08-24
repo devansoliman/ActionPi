@@ -21,7 +21,7 @@ recording = False
 # time counter
 timer = 0
 
-# pin assignment
+# button pin
 button = 5
 
 # configure GPIO
@@ -41,11 +41,12 @@ device.display(splash.convert(device.mode))
 
 # configure picamera2
 picam2 = Picamera2()
-video_config = picam2.create_video_configuration({"size": (1920, 1080)},
+video_config = picam2.create_video_configuration({"size": (3280, 1848)},
                                                  transform=Transform(hflip=1, vflip=1))
 picam2.configure(video_config)
 encoder = H264Encoder(bitrate=10000000)
 
+# load custom fonts
 reg10 = ImageFont.truetype("Inter-Regular.ttf", 10)
 bold20 = ImageFont.truetype("Inter-Bold.ttf", 20)
 bold40 = ImageFont.truetype("Inter-Bold.ttf", 40)
@@ -64,9 +65,9 @@ def arm():
         draw.text((0, 50), f"{free_gb:.2f} / {total_gb:.2f} GB", font=reg10, fill="white")
 
 
-def display_time():
+def show_time():
     if recording:
-        threading.Timer(1, display_time).start()
+        threading.Timer(1, show_time).start()
         global timer
         with canvas(device) as draw:
             draw.text((0, 10), f"{timer//60:02}:{timer%60:02}", font=bold40, fill="white")
@@ -80,7 +81,7 @@ def video(button):
         timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         picam2.start_recording(encoder, f"{timestamp}.h264")
         recording = True
-        display_time()
+        show_time()
         print("RECORDING")
     else:
         picam2.stop_recording()

@@ -1,9 +1,10 @@
 [Unit]
 Description=ActionPi
+DefaultDependencies=false   
 
 [Service]
-ExecStart=/bin/bash -c "cd /home/action && python action.py"
 Type=simple
+ExecStart=/bin/bash -c "cd /home/action && python action.py"
 
 [Install]
-WantedBy=default.target
+WantedBy=local-fs.target
