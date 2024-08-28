@@ -60,6 +60,10 @@ def arm():
     with canvas(device) as draw:
         draw.text((0, 0), "READY", font=medium, fill="white")
         draw.text((0, 20), f"{free_gb:.2f} / {total_gb:.2f} GB", font=small, fill="white")
+        # battery meter
+        draw.rectangle((108, 4, 122, 14), fill="white")
+        draw.rectangle((122, 6, 124, 12), fill="white")
+        draw.text((110, 4), "??", font=small, fill="black")
 
 
 def show_time():
@@ -68,6 +72,10 @@ def show_time():
         global timer
         with canvas(device) as draw:
             draw.text((0, 0), f"{timer//60:02}:{timer%60:02}", font=large, fill="white")
+            # battery meter
+            draw.rectangle((108, 4, 122, 14), fill="white")
+            draw.rectangle((122, 6, 124, 12), fill="white")
+            draw.text((110, 4), "??", font=small, fill="black")
         timer += 1
 
 
