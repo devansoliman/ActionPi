@@ -34,8 +34,6 @@ device = ssd1306(serial)
 
 # splash image
 splash = Image.open("splash.jpg")
-size = device.width, device.height
-splash = splash.resize(size, Image.LANCZOS)
 device.display(splash.convert(device.mode))
 
 # configure picamera2
@@ -47,8 +45,8 @@ encoder = H264Encoder()
 
 # load custom fonts
 small = ImageFont.truetype("Inter-Regular.ttf", 10)
-medium = ImageFont.truetype("Inter-Bold.ttf", 20)
-large = ImageFont.truetype("Inter-Bold.ttf", 40)
+medium = ImageFont.truetype("Inter-Bold.ttf", 16)
+large = ImageFont.truetype("Inter-Bold.ttf", 30)
 
 
 def arm():
@@ -60,8 +58,8 @@ def arm():
     print(f"{free_gb:.2f} / {total_gb:.2f} GB FREE")
 
     with canvas(device) as draw:
-        draw.text((0, 10), "READY", font=medium, fill="white")
-        draw.text((0, 50), f"{free_gb:.2f} / {total_gb:.2f} GB", font=small, fill="white")
+        draw.text((0, 0), "READY", font=medium, fill="white")
+        draw.text((0, 20), f"{free_gb:.2f} / {total_gb:.2f} GB", font=small, fill="white")
 
 
 def show_time():
@@ -69,7 +67,7 @@ def show_time():
         threading.Timer(1, show_time).start()
         global timer
         with canvas(device) as draw:
-            draw.text((0, 10), f"{timer//60:02}:{timer%60:02}", font=large, fill="white")
+            draw.text((0, 0), f"{timer//60:02}:{timer%60:02}", font=large, fill="white")
         timer += 1
 
 
