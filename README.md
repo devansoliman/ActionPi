@@ -7,6 +7,7 @@ Install the latest version of Raspbian OS on your Pi Zero and install the follow
 - [rpi-lgpio](https://pypi.org/project/rpi-lgpio/)
 - [picamera2](https://pypi.org/project/picamera2/)
 - [luma.oled](https://luma-oled.readthedocs.io/en/latest/software.html)
+- ffmpeg
 
 1. Put the contents of `software` into an easily accessible directory.
 2. Move `autostart.service` into `/etc/systemd/system/`. You may have to edit the path to `action.py`.
