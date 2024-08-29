@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 from picamera2 import Picamera2
 from picamera2.encoders import H264Encoder
+from picamera2.outputs import FfmpegOutput
 from libcamera import Transform
 from datetime import datetime
 import threading
@@ -84,7 +85,8 @@ def video(button):
 
     if recording == False:
         timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-        picam2.start_recording(encoder, f"{timestamp}.h264")
+        output = FfmpegOutput(f"{timestamp}.mp4", audio=False)
+        picam2.start_recording(encoder, output)
         recording = True
         show_time()
         print("RECORDING")
