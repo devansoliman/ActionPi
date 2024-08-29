@@ -15,6 +15,9 @@ from luma.oled.device import ssd1306
 from PIL import Image, ImageFont
 
 
+# max CPU priority
+os.nice(-20)
+
 # video recording state
 recording = False
 
