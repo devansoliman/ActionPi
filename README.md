@@ -9,10 +9,11 @@ Install the latest version of Raspbian OS on your Pi Zero and install the follow
 - [luma.oled](https://luma-oled.readthedocs.io/en/latest/software.html)
 - ffmpeg
 
-1. Put the contents of `software` into an easily accessible directory.
-2. Move `autostart.service` into `/etc/systemd/system/`. You may have to edit the path to `action.py`.
-3. Run `sudo systemctl enable autostart.service`.
-4. Open `__init__.py` in `/usr/lib/python3/dist-packages/luma/oled/device/`. Find `__init__` function under `class ssd1306(device)`. Change `height` parameter from **64** to **32**.
+1. Install `DietPi` using the [docs](https://dietpi.com/docs/install/). Add the line `dtoverlay=imx219` to `config.txt` in the `bootfs` partition.
+2. Put the contents of `software` into an easily accessible directory.
+3. Move `autostart.service` into `/etc/systemd/system/`. You may have to edit the path to `action.py`.
+4. Run `sudo systemctl enable autostart.service`.
+5. Open `__init__.py` in `/usr/lib/python3/dist-packages/luma/oled/device/`. Find `__init__` function under `class ssd1306(device)`. Change `height` parameter from **64** to **32**.
 
 
 ## Assembly Guide
