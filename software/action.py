@@ -43,7 +43,8 @@ device.display(splash.convert(device.mode))
 # configure picamera2
 picam2 = Picamera2()
 video_config = picam2.create_video_configuration({"size": (1920, 1080)},
-                                                 transform=Transform(hflip=1, vflip=1))
+                                                 transform=Transform(hflip=1, vflip=1),
+                                                 buffer_count=2)
 picam2.configure(video_config)
 encoder = H264Encoder()
 
