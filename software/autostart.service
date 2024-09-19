@@ -4,7 +4,7 @@ DefaultDependencies=false
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c "cd /home/action && python action.py"
+ExecStart=/bin/bash -c "cd /root && python3 action.py"
 
 [Install]
 WantedBy=local-fs.target
