@@ -3,17 +3,16 @@ The open-source action camera.
 
 
 ## Build
-Install the latest version of Raspbian OS on your Pi Zero and install the following dependencies:
-- [rpi-lgpio](https://pypi.org/project/rpi-lgpio/)
-- [picamera2](https://pypi.org/project/picamera2/)
-- [luma.oled](https://luma-oled.readthedocs.io/en/latest/software.html)
-- ffmpeg
-
 1. Install `DietPi` using the [docs](https://dietpi.com/docs/install/). Add the line `dtoverlay=imx219` to `config.txt` in the `bootfs` partition.
 2. Put the contents of `software` into an easily accessible directory.
 3. Move `autostart.service` into `/etc/systemd/system/`. You may have to edit the path to `action.py`.
 4. Run `sudo systemctl enable autostart.service`.
-5. Open `__init__.py` in `/usr/lib/python3/dist-packages/luma/oled/device/`. Find `__init__` function under `class ssd1306(device)`. Change `height` parameter from **64** to **32**.
+5. Install the following dependencies:
+  - [rpi-lgpio](https://pypi.org/project/rpi-lgpio/)
+  - [picamera2](https://pypi.org/project/picamera2/)
+  - [luma.oled](https://luma-oled.readthedocs.io/en/latest/software.html)
+  - ffmpeg
+6. Open `__init__.py` in `/usr/lib/python3/dist-packages/luma/oled/device/`. Find `__init__` function under `class ssd1306(device)`. Change `height` parameter from **64** to **32**.
 
 
 ## Assembly Guide
