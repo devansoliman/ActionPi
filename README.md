@@ -29,7 +29,7 @@ I recommend using a filament with impact, UV, and fatigue resistance. Most recen
 - 18650 Li-ion cell
 - tactile button (12mm x 12mm)
 - SS12D10 slide switch
-- 22 AWG wire
+- 26 AWG wire
 - 2x nickel strips
 - 4x m2.5 x 8mm flat head screws
 - 2x m2.5 x 5mm flat head screws
